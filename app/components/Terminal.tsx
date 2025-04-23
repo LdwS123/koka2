@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect, useRef } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { FaLinkedin, FaEnvelope } from 'react-icons/fa';
 
 interface Command {
@@ -44,14 +44,14 @@ const Terminal = () => {
   const CommandLink = ({ command, children }: { command: string; children: React.ReactNode }) => (
     <div
       onClick={() => handleCommand(command)}
-      className="cursor-pointer transition-all duration-200 hover:bg-[#1a1f2c] hover:text-[#64ffda] p-2 rounded-md border border-transparent hover:border-[#64ffda] hover:shadow-glow"
+      className="cursor-pointer hover:underline hover:text-[#00ffff] transition-colors block"
     >
       {children}
     </div>
   );
 
   const AvailableCommands = () => (
-    <div className="space-y-1 bg-[#0d1117] p-4 rounded-lg border border-[#1f2937] shadow-lg">
+    <div className="space-y-2">
       <CommandLink command="projects">📁 projects  → Explore my projects (PredicTagAI, Hivenet, etc.)</CommandLink>
       <CommandLink command="about">👤 about    → Learn more about me</CommandLink>
       <CommandLink command="resume">📄 resume   → View my full resume</CommandLink>
@@ -62,20 +62,14 @@ const Terminal = () => {
   );
 
   const WelcomeMessage = () => (
-    <div className="space-y-6">
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-        className="bg-gradient-to-r from-[#0d1117] to-[#1f2937] p-6 rounded-lg border border-[#64ffda] shadow-lg"
-      >
-        <h2 className="text-2xl font-bold text-[#64ffda] mb-4">🌟 Welcome to Konstantine Gugunava's Terminal Portfolio! 🌟</h2>
-        <p className="text-[#8b949e] mb-4">I'm a Business & Tech Generalist passionate about fintech, AI, and blockchain.</p>
-        <p className="text-[#64ffda] mb-2">Available commands:</p>
-        <div className="ml-4">
-          <AvailableCommands />
-        </div>
-      </motion.div>
+    <div className="space-y-4">
+      <p>🌟 Welcome to Konstantine Gugunava&apos;s Terminal Portfolio! 🌟</p>
+      <p>I&apos;m a Business & Tech Generalist passionate about fintech, AI, and blockchain.</p>
+      <p>Available commands:</p>
+      <div className="ml-4">
+        <AvailableCommands />
+      </div>
+      <p className="text-[#666666]">Click any command above or type it</p>
     </div>
   );
 
@@ -101,29 +95,23 @@ const Terminal = () => {
 
       case 'projects':
         output = (
-          <div className="space-y-6">
-            <motion.h2 
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              className="text-2xl font-bold text-[#64ffda]"
-            >
-              🚀 Featured Projects
-            </motion.h2>
+          <div className="space-y-4">
+            <p className="text-[#00ffff]">🚀 Featured Projects 🚀</p>
             {projects.map((project, index) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.2 }}
-                className="bg-[#1f2937] p-6 rounded-lg border border-[#64ffda] shadow-lg hover:shadow-glow transition-all duration-300"
+                className="border border-[#00ffff] p-4 rounded-lg"
               >
-                <h3 className="text-xl font-bold text-[#64ffda] mb-2">{project.name}</h3>
-                <p className="text-[#8b949e] mb-2">{project.description}</p>
-                <p className="text-[#58a6ff]">{project.results}</p>
-                <p className="text-[#8b949e]">{project.role}</p>
+                <h3 className="text-[#00ffff] font-bold">{project.name}</h3>
+                <p className="text-[#00ff00]">{project.description}</p>
+                <p className="text-[#666666]">{project.results}</p>
+                <p className="text-[#666666]">{project.role}</p>
               </motion.div>
             ))}
-            <div className="mt-6">
+            <div className="ml-4">
               <AvailableCommands />
             </div>
           </div>
@@ -135,7 +123,7 @@ const Terminal = () => {
           <div className="space-y-4">
             <div>
               <p>👋 ABOUT ME 👋</p>
-              <p>I'm Konstantine — a Business & Tech Generalist with a global mindset.</p>
+              <p>I&apos;m Konstantine — a Business & Tech Generalist with a global mindset.</p>
               <p>🎯 Mission: Scale impactful tech at the intersection of fintech, innovation, and automation.</p>
               <p>💼 Professional Summary:</p>
               <ul className="ml-4">
@@ -186,7 +174,7 @@ SKEMA Business School (2023-2025)
 • Key coursework: Corporate Finance, Strategy, Venture Capital, AI Applications
 
 Université Paris 1 Panthéon-Sorbonne
-• Bachelor's Degree in Economics
+• Bachelor&apos;s Degree in Economics
 • Research focus: Neobank Business Models and Fintech Profitability Analysis
 
 💼 PROFESSIONAL EXPERIENCE
@@ -211,7 +199,7 @@ PKF Kaizen (2021) - Audit Assistant
 PredicTagAI (2024-2025)
 • Led go-to-market and commercial strategy for AI pricing tool
 • Improved sales by 10-12% for U.S. retail clients
-• Initiated and closed partnership with Pricer's VP of Sales
+• Initiated and closed partnership with Pricer&apos;s VP of Sales
 
 Finka (2019-2020)
 • Developed MVP for peer-to-peer lending app
