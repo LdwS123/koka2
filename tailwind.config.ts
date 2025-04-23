@@ -16,6 +16,7 @@ const config: Config = {
           secondary: '#ff00ff',
           muted: '#666666',
         },
+        'terminal-bg': '#0a0e17',
       },
       fontFamily: {
         mono: ['JetBrains Mono', 'monospace'],
@@ -33,6 +34,10 @@ const config: Config = {
           '0%': { opacity: '0', transform: 'translateY(10px)' },
           '100%': { opacity: '1', transform: 'translateY(0)' },
         },
+      },
+      backgroundImage: {
+        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+        'gradient-conic': 'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },
     },
   },
