@@ -75,7 +75,6 @@ const Terminal: React.FC = () => {
   const [history, setHistory] = useState<Command[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
-  const [typewriterText, setTypewriterText] = useState<TypewriterState>({ text: '', isComplete: false });
 
   const projects = [
     {
@@ -102,76 +101,6 @@ const Terminal: React.FC = () => {
       role: 'Founder & Project Lead: Microfinance solutions for students',
     },
   ];
-
-  const [blogPosts, setBlogPosts] = useState<BlogPost[]>([
-    {
-      id: '1',
-      title: "The Future of BNPL Payments",
-      date: "2024-04-23",
-      summary: "Analysis of the Buy Now Pay Later market and its impact on commerce.",
-      content: `The BNPL (Buy Now Pay Later) market is experiencing explosive growth, radically transforming the e-commerce and retail landscape.
-
-Key Analysis Points:
-
-1. Market State
-• 200% growth in 2023
-• Massive adoption by Gen Z and Millennials
-• Key players: Klarna, Affirm, AfterPay
-
-2. Technological Innovation
-• AI integration for risk assessment
-• Omnichannel solutions (online and POS)
-• Credit process automation
-
-3. Challenges and Opportunities
-• Increasing sector regulation
-• Competition from traditional banks
-• New revenue models
-
-4. Future Perspectives
-• Expected market consolidation
-• B2B expansion
-• Blockchain integration for transparency
-
-My analysis: BNPL represents more than just a payment option - it's a revolution in credit access for the new generation.`,
-      category: "Fintech",
-      isPrivate: false
-    },
-    {
-      id: '2',
-      title: "Neobanks Revolution in Europe",
-      date: "2024-04-22",
-      summary: "How neobanks are transforming the European banking landscape.",
-      content: `European neobanks are redefining banking standards with a user-centric approach and technological innovation.
-
-In-Depth Analysis:
-
-1. Growth and Adoption
-• +45% users in 2023
-• Record penetration rate among 18-35 year olds
-• Accelerated pan-European expansion
-
-2. Key Innovations
-• Video KYC and instant verification
-• Single-use virtual cards
-• Personalized spending analytics
-• Native crypto integration
-
-3. Business Models
-• Freemium vs Premium
-• Revenue diversification
-• Strategic partnerships
-
-4. Current Challenges
-• Path to profitability
-• Market consolidation
-• Regulatory compliance
-
-Conclusion: Neobanks are no longer challengers but becoming major players in the financial sector.`,
-      category: "Neobanks",
-      isPrivate: false
-    }
-  ]);
 
   const interviewQuestions: InterviewQuestion[] = [
     {
@@ -519,7 +448,6 @@ Tools & Platforms:
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: parseInt(q.id) * 0.1 }}
                     onClick={() => {
-                      setTypewriterText({ text: q.answer, isComplete: false });
                       handleCommand(`interview ${q.id}`);
                     }}
                     className="bg-[#1c2128]/90 backdrop-blur-sm border border-[#30363d] rounded-lg p-4 hover:border-[#2ecc71] transition-all duration-300 cursor-pointer group"
@@ -611,7 +539,9 @@ Tools & Platforms:
   };
 
   useEffect(() => {
-    inputRef.current?.focus();
+    if (inputRef.current) {
+      inputRef.current.focus();
+    }
   }, []);
 
   return (
