@@ -9,25 +9,10 @@ interface Command {
   output: string | React.ReactNode;
 }
 
-interface BlogPost {
-  id: string;
-  title: string;
-  date: string;
-  summary: string;
-  content: string;
-  category: string;
-  isPrivate: boolean;
-}
-
 interface InterviewQuestion {
   id: string;
   question: string;
   answer: string;
-}
-
-interface TypewriterState {
-  text: string;
-  isComplete: boolean;
 }
 
 // Déplacer le hook en dehors du composant Terminal
@@ -193,7 +178,7 @@ And whenever I get the chance, I talk to people — whether it's engineers, prod
 
   useEffect(() => {
     setHistory([{ input: 'welcome', output: <WelcomeMessage /> }]);
-  }, []);
+  }, [WelcomeMessage]);
 
   const handleCommand = async (command: string) => {
     setIsLoading(true);
