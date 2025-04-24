@@ -178,7 +178,7 @@ And whenever I get the chance, I talk to people — whether it's engineers, prod
 
   useEffect(() => {
     setHistory([{ input: 'welcome', output: <WelcomeMessage /> }]);
-  }, [WelcomeMessage]);
+  }, []);
 
   const handleCommand = async (command: string) => {
     setIsLoading(true);
