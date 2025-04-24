@@ -42,7 +42,7 @@ const useTypewriter = (text: string, speed: number = 50) => {
     
     const timer = setInterval(() => {
       if (i < text.length) {
-        setDisplayText(prev => prev + text.charAt(i));
+        setDisplayText((prev: string) => prev + text.charAt(i));
         i++;
       } else {
         setIsComplete(true);
@@ -70,15 +70,10 @@ const TypewriterResponse = ({ text }: { text: string }) => {
   );
 };
 
-const Terminal = () => {
+const Terminal: React.FC = () => {
   const [input, setInput] = useState('');
   const [history, setHistory] = useState<Command[]>([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [isAdmin, setIsAdmin] = useState(false);
-  const [newPostContent, setNewPostContent] = useState('');
-  const [isEditing, setIsEditing] = useState(false);
-  const [currentEditingPost, setCurrentEditingPost] = useState<BlogPost | null>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   const [typewriterText, setTypewriterText] = useState<TypewriterState>({ text: '', isComplete: false });
 
